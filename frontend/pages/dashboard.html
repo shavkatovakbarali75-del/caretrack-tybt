@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYBT — Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="brand"><div class="brand-icon">🏥</div><div class="brand-text"><h2>CareTrack</h2><span>TYBT Platform</span></div></div></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-label">Asosiy</div>
+                    <a href="/pages/dashboard.html" class="active"><span class="nav-icon">📊</span>Boshqaruv paneli</a>
+                    <a href="/pages/doctors.html"><span class="nav-icon">👨‍⚕️</span>Shifokorlar</a>
+                    <a href="/pages/patients.html"><span class="nav-icon">👥</span>Bemorlar</a>
+                    <a href="/pages/diseases.html"><span class="nav-icon">🦠</span>Tashxislar</a>
+                </div>
+                <div class="nav-section"><div class="nav-label">Tizim</div>
+                    <a href="/pages/activity.html"><span class="nav-icon">📋</span>Faoliyat jurnali</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><div class="user-avatar">A</div><div class="user-info"><div class="name">Administrator</div><div class="role">Admin</div></div></div>
+        </aside>
+        <div class="main-content">
+            <header class="navbar"><span class="page-title">Boshqaruv paneli</span><div class="nav-actions"><div class="search-trigger">🔍 Qidirish... <kbd>Ctrl+K</kbd></div><button class="theme-toggle">🌙</button></div></header>
+            <div class="page-container">
+                <div class="page-header"><h1>Boshqaruv paneli</h1></div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-icon blue">👨‍⚕️</div><div class="stat-value">3</div><div class="stat-label">Shifokorlar</div></div>
+                    <div class="stat-card"><div class="stat-icon green">👥</div><div class="stat-value">3</div><div class="stat-label">Bemorlar</div></div>
+                    <div class="stat-card"><div class="stat-icon orange">🦠</div><div class="stat-value">3</div><div class="stat-label">Tashxislar</div></div>
+                    <div class="stat-card"><div class="stat-icon red">📋</div><div class="stat-value">5</div><div class="stat-label">Faoliyatlar</div></div>
+                </div>
+                <div class="charts-grid">
+                    <div class="card"><div class="card-header"><h3>Kasallik og'irligi</h3></div><div class="chart-container"><canvas id="c1"></canvas></div></div>
+                    <div class="card"><div class="card-header"><h3>Shifokor — bemorlar</h3></div><div class="chart-container"><canvas id="c2"></canvas></div></div>
+                    <div class="card"><div class="card-header"><h3>Yosh guruhlari</h3></div><div class="chart-container"><canvas id="c3"></canvas></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    new Chart(document.getElementById('c1'), {type:'doughnut',data:{labels:['Yengil',"O'rtacha","Og'ir","Juda og'ir"],datasets:[{data:[1,1,1,0],backgroundColor:['#16A34A','#F59E0B','#EA580C','#DC2626'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:16,usePointStyle:true}}}}});
+    new Chart(document.getElementById('c2'), {type:'bar',data:{labels:['Dr. Karimov','Dr. Rahimova','Dr. Toshmatov'],datasets:[{data:[2,1,0],backgroundColor:'#2563EB',borderRadius:6,barThickness:32}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}},x:{grid:{display:false}}}}});
+    new Chart(document.getElementById('c3'), {type:'pie',data:{labels:['18-30','31-50','51-70'],datasets:[{data:[0,2,1],backgroundColor:['#93c5fd','#3b82f6','#1d4ed8'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:16,usePointStyle:true}}}}});
+    </script>
+</body>
+</html>

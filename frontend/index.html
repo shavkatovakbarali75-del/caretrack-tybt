@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYBT — CareTrack Clinic</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Login -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <div class="logo">🏥</div>
+            <h1>CareTrack Clinic</h1>
+            <p>Tibbiy Yozuvlarni Boshqarish Tizimi</p>
+            <div id="login-error" class="alert alert-error hidden"></div>
+            <div class="form-field"><label>Foydalanuvchi nomi</label><input type="text" id="login-username" placeholder="admin"></div>
+            <div class="form-field"><label>Parol</label><input type="password" id="login-password" placeholder="••••••••"></div>
+            <button class="login-btn" onclick="login()">Tizimga kirish</button>
+        </div>
+    </div>
+
+    <!-- App -->
+    <div id="app" class="app hidden">
+        <!-- Mobile -->
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="mobile-overlay" id="mobile-overlay" onclick="toggleSidebar()"></div>
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-icon">🏥</div>
+                    <div class="brand-text"><h2>CareTrack</h2><span>TYBT Platform</span></div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-label">Asosiy</div>
+                    <a href="#" data-page="dashboard" class="active"><span class="nav-icon">📊</span>Boshqaruv paneli</a>
+                    <a href="#" data-page="doctors"><span class="nav-icon">👨‍⚕️</span>Shifokorlar</a>
+                    <a href="#" data-page="patients"><span class="nav-icon">👥</span>Bemorlar</a>
+                    <a href="#" data-page="diseases"><span class="nav-icon">🦠</span>Tashxislar</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-label">Tizim</div>
+                    <a href="#" data-page="activity" class="admin-only"><span class="nav-icon">📋</span>Faoliyat jurnali</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-avatar" id="user-avatar">A</div>
+                <div class="user-info"><div class="name" id="user-name">Admin</div><div class="role" id="user-role">Administrator</div></div>
+                <button class="btn btn-ghost btn-icon" onclick="logout()" title="Chiqish">🚪</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="main-content">
+            <header class="navbar">
+                <span class="page-title" id="page-title">Boshqaruv paneli</span>
+                <div class="nav-actions">
+                    <div class="search-trigger" onclick="openCommand()">🔍 Qidirish... <kbd>Ctrl+K</kbd></div>
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Mavzu">🌙</button>
+                </div>
+            </header>
+            <div class="page-container">
+
+                <!-- Dashboard -->
+                <div id="page-dashboard" class="page">
+                    <div class="page-header"><h1>Boshqaruv paneli</h1></div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-icon blue">👨‍⚕️</div><div class="stat-value" id="stat-doctors">0</div><div class="stat-label">Shifokorlar</div></div>
+                        <div class="stat-card"><div class="stat-icon green">👥</div><div class="stat-value" id="stat-patients">0</div><div class="stat-label">Bemorlar</div></div>
+                        <div class="stat-card"><div class="stat-icon orange">🦠</div><div class="stat-value" id="stat-diseases">0</div><div class="stat-label">Tashxislar</div></div>
+                        <div class="stat-card"><div class="stat-icon red">📋</div><div class="stat-value" id="stat-activity">0</div><div class="stat-label">Faoliyatlar</div></div>
+                    </div>
+                    <div class="charts-grid">
+                        <div class="card"><div class="card-header"><h3>Kasallik og'irligi</h3></div><div class="chart-container"><canvas id="severity-chart"></canvas></div></div>
+                        <div class="card"><div class="card-header"><h3>Shifokor — bemorlar</h3></div><div class="chart-container"><canvas id="doctors-chart"></canvas></div></div>
+                        <div class="card"><div class="card-header"><h3>Yosh guruhlari</h3></div><div class="chart-container"><canvas id="age-chart"></canvas></div></div>
+                    </div>
+                </div>
+
+                <!-- Doctors -->
+                <div id="page-doctors" class="page hidden">
+                    <div class="page-header">
+                        <h1>Shifokorlar</h1>
+                        <div class="actions"><button class="btn btn-primary admin-only" onclick="openDoctorModal()">+ Yangi shifokor</button></div>
+                    </div>
+                    <div class="card">
+                        <div class="search-box"><input type="text" id="doctor-search" placeholder="Ism, mutaxassislik yoki bo'lim bo'yicha qidirish..." oninput="loadDoctors()"></div>
+                        <div class="table-wrapper"><table>
+                            <thead><tr><th>Shifokor</th><th>Mutaxassislik</th><th>Bo'lim</th><th>Aloqa</th><th></th></tr></thead>
+                            <tbody id="doctors-table"></tbody>
+                        </table></div>
+                    </div>
+                </div>
+
+                <!-- Patients -->
+                <div id="page-patients" class="page hidden">
+                    <div class="page-header">
+                        <h1>Bemorlar</h1>
+                        <div class="actions">
+                            <button class="btn btn-secondary" onclick="exportCSV()">📥 Eksport</button>
+                            <button class="btn btn-primary" onclick="openPatientModal()">+ Yangi bemor</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="search-box"><input type="text" id="patient-search" placeholder="Bemor ismi yoki shifokor bo'yicha qidirish..." oninput="loadPatients()"></div>
+                        <div class="table-wrapper"><table>
+                            <thead><tr><th>Bemor</th><th>Tug'ilgan</th><th>Jinsi</th><th>Shifokor</th><th></th></tr></thead>
+                            <tbody id="patients-table"></tbody>
+                        </table></div>
+                    </div>
+                </div>
+
+                <!-- Diseases -->
+                <div id="page-diseases" class="page hidden">
+                    <div class="page-header">
+                        <h1>Kasalliklar / Tashxislar</h1>
+                        <div class="actions"><button class="btn btn-primary" onclick="openDiseaseModal()">+ Yangi tashxis</button></div>
+                    </div>
+                    <div class="card">
+                        <div class="search-box"><input type="text" id="disease-search" placeholder="ICD kod, kasallik nomi yoki bemor bo'yicha qidirish..." oninput="loadDiseases()"></div>
+                        <div class="table-wrapper"><table>
+                            <thead><tr><th>ICD</th><th>Kasallik</th><th>Bemor</th><th>Og'irlik</th><th>Sana</th><th></th></tr></thead>
+                            <tbody id="diseases-table"></tbody>
+                        </table></div>
+                    </div>
+                </div>
+
+                <!-- Activity -->
+                <div id="page-activity" class="page hidden">
+                    <div class="page-header"><h1>Faoliyat jurnali</h1></div>
+                    <div class="card">
+                        <div class="timeline" id="activity-timeline"></div>
+                    </div>
+                </div>
+
+                <!-- Patient Profile -->
+                <div id="page-profile" class="page hidden">
+                    <div class="page-header">
+                        <h1>Bemor profili</h1>
+                        <div class="actions">
+                            <button class="btn btn-secondary" onclick="printProfile()">🖨️ Chop etish</button>
+                            <button class="btn btn-secondary" onclick="showPage('patients')">← Orqaga</button>
+                        </div>
+                    </div>
+                    <div class="card" id="profile-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="doctor-modal"><div class="modal">
+        <h2 id="doctor-modal-title">Yangi Shifokor</h2>
+        <input type="hidden" id="doctor-id">
+        <div class="form-group"><label>To'liq ism</label><input type="text" id="doctor-name"></div>
+        <div class="form-group"><label>Mutaxassislik</label><input type="text" id="doctor-spec"></div>
+        <div class="form-group"><label>Bo'lim</label><input type="text" id="doctor-dept"></div>
+        <div class="form-group"><label>Telefon</label><input type="text" id="doctor-phone"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="doctor-email"></div>
+        <div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal('doctor-modal')">Bekor</button><button class="btn btn-primary" onclick="saveDoctor()">Saqlash</button></div>
+    </div></div>
+
+    <div class="modal-overlay" id="patient-modal"><div class="modal">
+        <h2 id="patient-modal-title">Yangi Bemor</h2>
+        <input type="hidden" id="patient-id">
+        <div class="form-group"><label>To'liq ism</label><input type="text" id="patient-name"></div>
+        <div class="form-group"><label>Tug'ilgan sana</label><input type="date" id="patient-birth"></div>
+        <div class="form-group"><label>Jinsi</label><select id="patient-gender"><option value="erkak">Erkak</option><option value="ayol">Ayol</option></select></div>
+        <div class="form-group"><label>Telefon</label><input type="text" id="patient-phone"></div>
+        <div class="form-group"><label>Manzil</label><input type="text" id="patient-address"></div>
+        <div class="form-group"><label>Shifokor</label><select id="patient-doctor"></select></div>
+        <div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal('patient-modal')">Bekor</button><button class="btn btn-primary" onclick="savePatient()">Saqlash</button></div>
+    </div></div>
+
+    <div class="modal-overlay" id="disease-modal"><div class="modal">
+        <h2 id="disease-modal-title">Yangi Tashxis</h2>
+        <input type="hidden" id="disease-id">
+        <div class="form-group"><label>ICD Kodi</label><input type="text" id="disease-icd"></div>
+        <div class="form-group"><label>Kasallik nomi</label><input type="text" id="disease-name"></div>
+        <div class="form-group"><label>Tavsif</label><textarea id="disease-desc"></textarea></div>
+        <div class="form-group"><label>Og'irlik darajasi</label><select id="disease-severity"><option value="yengil">Yengil</option><option value="o'rtacha">O'rtacha</option><option value="og'ir">Og'ir</option><option value="juda og'ir">Juda og'ir</option></select></div>
+        <div class="form-group"><label>Bemor</label><select id="disease-patient"></select></div>
+        <div class="form-group"><label>Tashxis sanasi</label><input type="date" id="disease-date"></div>
+        <div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal('disease-modal')">Bekor</button><button class="btn btn-primary" onclick="saveDisease()">Saqlash</button></div>
+    </div></div>
+
+    <!-- Command Search -->
+    <div class="command-overlay" id="command-overlay" onclick="closeCommand(event)">
+        <div class="command-box" onclick="event.stopPropagation()">
+            <input type="text" id="command-input" placeholder="Sahifa yoki amal qidirish..." oninput="filterCommands()">
+            <div class="command-results" id="command-results"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

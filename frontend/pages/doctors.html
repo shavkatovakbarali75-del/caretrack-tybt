@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYBT — Shifokorlar</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="brand"><div class="brand-icon">🏥</div><div class="brand-text"><h2>CareTrack</h2><span>TYBT Platform</span></div></div></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-label">Asosiy</div>
+                    <a href="/pages/dashboard.html"><span class="nav-icon">📊</span>Boshqaruv paneli</a>
+                    <a href="/pages/doctors.html" class="active"><span class="nav-icon">👨‍⚕️</span>Shifokorlar</a>
+                    <a href="/pages/patients.html"><span class="nav-icon">👥</span>Bemorlar</a>
+                    <a href="/pages/diseases.html"><span class="nav-icon">🦠</span>Tashxislar</a>
+                </div>
+                <div class="nav-section"><div class="nav-label">Tizim</div>
+                    <a href="/pages/activity.html"><span class="nav-icon">📋</span>Faoliyat jurnali</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><div class="user-avatar">A</div><div class="user-info"><div class="name">Administrator</div><div class="role">Admin</div></div></div>
+        </aside>
+        <div class="main-content">
+            <header class="navbar"><span class="page-title">Shifokorlar</span><div class="nav-actions"><div class="search-trigger">🔍 Qidirish... <kbd>Ctrl+K</kbd></div><button class="theme-toggle">🌙</button></div></header>
+            <div class="page-container">
+                <div class="page-header"><h1>Shifokorlar</h1><div class="actions"><button class="btn btn-primary">+ Yangi shifokor</button></div></div>
+                <div class="card">
+                    <div class="search-box"><input type="text" placeholder="Ism, mutaxassislik yoki bo'lim bo'yicha qidirish..."></div>
+                    <div class="table-wrapper"><table>
+                        <thead><tr><th>Shifokor</th><th>Mutaxassislik</th><th>Bo'lim</th><th>Aloqa</th><th></th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Dr. Karimov Jasur</strong></td><td>Kardiologiya</td><td><span class="badge badge-info">Yurak bo'limi</span></td><td>+998901234567</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><strong>Dr. Rahimova Nilufar</strong></td><td>Nevrologiya</td><td><span class="badge badge-info">Nerv bo'limi</span></td><td>+998901234568</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><strong>Dr. Toshmatov Sardor</strong></td><td>Dermatologiya</td><td><span class="badge badge-info">Teri bo'limi</span></td><td>+998901234569</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

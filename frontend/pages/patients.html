@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYBT — Bemorlar</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="brand"><div class="brand-icon">🏥</div><div class="brand-text"><h2>CareTrack</h2><span>TYBT Platform</span></div></div></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-label">Asosiy</div>
+                    <a href="/pages/dashboard.html"><span class="nav-icon">📊</span>Boshqaruv paneli</a>
+                    <a href="/pages/doctors.html"><span class="nav-icon">👨‍⚕️</span>Shifokorlar</a>
+                    <a href="/pages/patients.html" class="active"><span class="nav-icon">👥</span>Bemorlar</a>
+                    <a href="/pages/diseases.html"><span class="nav-icon">🦠</span>Tashxislar</a>
+                </div>
+                <div class="nav-section"><div class="nav-label">Tizim</div>
+                    <a href="/pages/activity.html"><span class="nav-icon">📋</span>Faoliyat jurnali</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><div class="user-avatar">A</div><div class="user-info"><div class="name">Administrator</div><div class="role">Admin</div></div></div>
+        </aside>
+        <div class="main-content">
+            <header class="navbar"><span class="page-title">Bemorlar</span><div class="nav-actions"><div class="search-trigger">🔍 Qidirish... <kbd>Ctrl+K</kbd></div><button class="theme-toggle">🌙</button></div></header>
+            <div class="page-container">
+                <div class="page-header"><h1>Bemorlar</h1><div class="actions"><button class="btn btn-secondary">📥 Eksport</button><button class="btn btn-primary">+ Yangi bemor</button></div></div>
+                <div class="card">
+                    <div class="search-box"><input type="text" placeholder="Bemor ismi yoki shifokor bo'yicha qidirish..."></div>
+                    <div class="table-wrapper"><table>
+                        <thead><tr><th>Bemor</th><th>Tug'ilgan</th><th>Jinsi</th><th>Shifokor</th><th></th></tr></thead>
+                        <tbody>
+                            <tr><td><a href="/pages/profile.html" style="color:var(--primary);font-weight:600">Aliyev Bobur</a></td><td>1990-05-15</td><td>Erkak</td><td>Dr. Karimov Jasur</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><a href="/pages/profile.html" style="color:var(--primary);font-weight:600">Karimova Madina</a></td><td>1985-08-22</td><td>Ayol</td><td>Dr. Rahimova Nilufar</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><a href="/pages/profile.html" style="color:var(--primary);font-weight:600">Hasanov Timur</a></td><td>1978-12-03</td><td>Erkak</td><td>Dr. Karimov Jasur</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

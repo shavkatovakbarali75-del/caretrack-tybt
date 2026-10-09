@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYBT — Kasalliklar</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="brand"><div class="brand-icon">🏥</div><div class="brand-text"><h2>CareTrack</h2><span>TYBT Platform</span></div></div></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-label">Asosiy</div>
+                    <a href="/pages/dashboard.html"><span class="nav-icon">📊</span>Boshqaruv paneli</a>
+                    <a href="/pages/doctors.html"><span class="nav-icon">👨‍⚕️</span>Shifokorlar</a>
+                    <a href="/pages/patients.html"><span class="nav-icon">👥</span>Bemorlar</a>
+                    <a href="/pages/diseases.html" class="active"><span class="nav-icon">🦠</span>Tashxislar</a>
+                </div>
+            </nav>
+            <div class="sidebar-footer"><div class="user-avatar">A</div><div class="user-info"><div class="name">Administrator</div><div class="role">Admin</div></div></div>
+        </aside>
+        <div class="main-content">
+            <header class="navbar"><span class="page-title">Tashxislar</span><div class="nav-actions"><div class="search-trigger">🔍 Qidirish... <kbd>Ctrl+K</kbd></div><button class="theme-toggle">🌙</button></div></header>
+            <div class="page-container">
+                <div class="page-header"><h1>Kasalliklar / Tashxislar</h1><div class="actions"><button class="btn btn-primary">+ Yangi tashxis</button></div></div>
+                <div class="card">
+                    <div class="search-box"><input type="text" placeholder="ICD kod, kasallik nomi yoki bemor bo'yicha qidirish..."></div>
+                    <div class="table-wrapper"><table>
+                        <thead><tr><th>ICD</th><th>Kasallik</th><th>Bemor</th><th>Og'irlik</th><th>Sana</th><th></th></tr></thead>
+                        <tbody>
+                            <tr><td><code style="background:var(--bg);padding:2px 8px;border-radius:4px;font-size:12px">I25.1</code></td><td><strong>Yurak ishemik kasalligi</strong></td><td>Aliyev Bobur</td><td><span class="badge badge-warning">o'rtacha</span></td><td>2024-01-15</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><code style="background:var(--bg);padding:2px 8px;border-radius:4px;font-size:12px">G43.9</code></td><td><strong>Migren</strong></td><td>Karimova Madina</td><td><span class="badge badge-success">yengil</span></td><td>2024-02-20</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                            <tr><td><code style="background:var(--bg);padding:2px 8px;border-radius:4px;font-size:12px">I10</code></td><td><strong>Gipertoniya</strong></td><td>Hasanov Timur</td><td><span class="badge badge-danger">og'ir</span></td><td>2024-03-10</td><td class="table-actions"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-ghost btn-sm">🗑️</button></td></tr>
+                        </tbody>
+                    </table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
